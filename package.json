@@ -1,0 +1,15 @@
+{
+  "name": "pi-pushover-mqtt",
+  "version": "1.0.0",
+  "description": "Function to push messages to a pushover user through nodejs and message queueu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joost van Velzen",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^4.1.0",
+    "pushover-notifications": "^1.2.2"
+  }
+}
