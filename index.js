@@ -26,9 +26,7 @@ client.on('connect', function () {
 // handle messages send to topic
 client.on('message', function (topic, message) {
     // create message object
-    const incoming = Buffer.from(JSON.stringify(message.toString()));
-    console.log(incoming);
-    const messageData = JSON.parse(incoming.toString());
+    const messageData = JSON.parse(message.toString());
     const msgToSend = Object.assign({}, defaultMessageData, messageData);
     console.log('msg combined',typeof msgToSend);
     console.log(msgToSend);
