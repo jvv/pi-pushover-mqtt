@@ -9,7 +9,7 @@ const p = new Push( {
 var mqtt = require('mqtt')
 var client  = mqtt.connect(process.env['MQTT_ADDRESS'])
 
-let msg = {
+let defaultMessageData = {
     title: "Master, I bring you this message:"
 }
 
@@ -26,8 +26,10 @@ client.on('connect', function () {
 // handle messages send to topic
 client.on('message', function (topic, message) {
     // create message object
-    let tmp = JSON.parse(message.toString());
-    const msgToSend = Object.assign({}, msg, tmp);
+    const messageAsString = message.toString();
+    const jsonString = JSON.stringify(messageAsString);
+    const messageData = JSON.parse(jsonString);
+    const msgToSend = Object.assign({}, defaultMessageData, messageData);
 
     // send message:
     p.send( msgToSend, function( err, result ) {
