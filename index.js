@@ -20,8 +20,12 @@ client.on('connect', function () {
 // handle messages send to topic
 client.on('message', function (topic, message) {
     // send message:
+    let msg = {
+        title: "Master, I bring you this message:",
+        message
+    }
 
-    p.send( msg, function( message, result ) {
+    p.send( msg, function( err, result ) {
         if ( err ) {
             throw err
         }
