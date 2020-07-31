@@ -26,7 +26,7 @@ client.on('connect', function () {
 // handle messages send to topic
 client.on('message', function (topic, message) {
     // create message object
-    const buffer = Buffer.from(message);
+    const buffer = Buffer.from(message.data);
     const messageData = buffer.toJSON();
     console.log(messageData);
     const msgToSend = Object.assign({}, defaultMessageData, messageData);
