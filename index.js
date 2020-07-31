@@ -8,11 +8,16 @@ const p = new Push( {
 
 var mqtt = require('mqtt')
 var client  = mqtt.connect(process.env['MQTT_ADDRESS'])
- 
+
+let msg = {
+    title: "Master, I bring you this message:"
+}
+
 // subscribe to topic
 client.on('connect', function () {
   client.subscribe('node-y-pi', function (err) {
     if(err) {
+        // fuck I dont know what to do :P
         console.error(err);
     }
   })
@@ -20,18 +25,15 @@ client.on('connect', function () {
  
 // handle messages send to topic
 client.on('message', function (topic, message) {
-    
-    // send message:
-    let msg = {
-        title: "Master, I bring you this message:",
-        message: message.toString()
-    }
+    // create message object
+    let tmp = JSON.parse(message.toString());
+    const msgToSend = Object.assign({}, msg, tmp);
 
-    p.send( msg, function( err, result ) {
+    // send message:
+    p.send( msgToSend, function( err, result ) {
         if ( err ) {
             throw err
         }
-
         console.log( result )
     });
   client.end()
