@@ -19,10 +19,11 @@ client.on('connect', function () {
  
 // handle messages send to topic
 client.on('message', function (topic, message) {
+    
     // send message:
     let msg = {
         title: "Master, I bring you this message:",
-        message
+        message: message.toString()
     }
 
     p.send( msg, function( err, result ) {
