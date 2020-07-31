@@ -17,7 +17,7 @@ let defaultMessageData = {
 client.on('connect', function () {
   client.subscribe(process.env['MQTT_TOPIC'], function (err) {
     if(err) {
-        // fuck I dont know what to do :P
+        // Ooops
         console.error(err);
     }
   })
