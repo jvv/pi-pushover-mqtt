@@ -27,13 +27,15 @@ client.on('connect', function () {
 client.on('message', function (topic, message) {
     // create message object
     const messageAsString = message.toString();
-    console.log(messageAsString);
+    console.log('incoming toStrig()', typeof messageAsString);
+    console.log('json parsed from incoming toStrig', typeof messageAsString);
+
     const jsonString = JSON.stringify(messageAsString);
-    console.log(jsonString);
+    console.log('json strinified', typeof jsonString);
     const messageData = JSON.parse(jsonString);
-    console.log(messageData);
+    console.log('json parsed from json string', typeof messageData);
     const msgToSend = Object.assign({}, defaultMessageData, messageData);
-    console.log(msgToSend);
+    console.log('msg combined',typeof msgToSend);
 
     // send message:
     p.send( msgToSend, function( err, result ) {
