@@ -19,7 +19,14 @@ client.on('connect', function () {
  
 // handle messages send to topic
 client.on('message', function (topic, message) {
-  console.log(message)
-  console.log(message.toString())
+    // send message:
+
+    p.send( msg, function( message, result ) {
+        if ( err ) {
+            throw err
+        }
+
+        console.log( result )
+    });
   client.end()
 })
