@@ -10,7 +10,7 @@ const mqtt = require('mqtt')
 const client  = mqtt.connect(process.env['MQTT_ADDRESS'])
 
 let defaultMessageData = {
-    title: "Master, I bring you this message:"
+    title: process.env['PUSHOVER_DEFAULT_MSG_TITLE']
 }
 
 // subscribe to topic
@@ -25,7 +25,9 @@ client.on('connect', function () {
  
 // handle messages send to topic
 client.on('message', function (topic, message) {
+    // Parse the incoming data to JSON object
     const messageData = JSON.parse(message.toString());
+    // Combine with the default message data (title, currently)
     const msgToSend = Object.assign({}, defaultMessageData, messageData);
     // send message:
     p.send( msgToSend, function( err, result ) {
