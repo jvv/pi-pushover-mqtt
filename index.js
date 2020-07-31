@@ -6,8 +6,8 @@ const p = new Push( {
     token: process.env['PUSHOVER_TOKEN']
 });
 
-var mqtt = require('mqtt')
-var client  = mqtt.connect(process.env['MQTT_ADDRESS'])
+const mqtt = require('mqtt')
+const client  = mqtt.connect(process.env['MQTT_ADDRESS'])
 
 let defaultMessageData = {
     title: "Master, I bring you this message:"
@@ -15,7 +15,7 @@ let defaultMessageData = {
 
 // subscribe to topic
 client.on('connect', function () {
-  client.subscribe('node-y-pi', function (err) {
+  client.subscribe(process.env['MQTT_TOPIC'], function (err) {
     if(err) {
         // fuck I dont know what to do :P
         console.error(err);
