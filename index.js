@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 const Push = require( 'pushover-notifications' )
 const p = new Push( {
